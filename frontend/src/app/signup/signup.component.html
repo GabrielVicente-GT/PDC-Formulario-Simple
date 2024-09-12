@@ -1,0 +1,46 @@
+<div class="signup-container">
+  <div class="signup-box">
+    <h1>Signup</h1>
+    <div class="input-group">
+      <label for="active_user_signup">User</label>
+      <input type="text" id="active_user_signup" [(ngModel)]="user" (ngModelChange)="updateUser($event)">
+    </div>
+
+    <button (click)="navigateTo('/inbox')" type="submit" class="button-primary">Submit</button>
+
+    <a (click)="navigateTo('/login')" class="signup-link">Go back</a>
+  </div>
+
+  <div class="login-box">
+    <h1>Login</h1>
+    <div class="input-group">
+      <label for="active_user_login">User</label>
+      <input type="text" id="active_user_login">
+    </div>
+
+    <div class="input-group">
+      <label for="password_login">Private Key</label>
+      <input type="password" id="password_login">
+    </div>
+
+    <button (click)="navigateTo('/inbox')" type="submit" class="button-primary">Sign In</button>
+
+    <a (click)="navigateTo('/signup')" class="signup-link">Signup</a>
+  </div>
+
+  <div class="login-gif-box">
+    <img src="assets/lock-animatedd.gif" alt="Login Animation" />
+  </div>
+
+  <div *ngIf="showToast" class="toast show position-fixed bottom-0 end-0 p-3" [class.error-toast]="isError"
+    style="z-index: 11">
+    <div class="toast-header">
+      <strong class="me-auto">Error</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"
+        (click)="showToast = false"></button>
+    </div>
+    <div class="toast-body">
+      Please fill in requierd fields marked with "*"
+    </div>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+<aside class="sidebar" [class.collapsed]="isCollapsed">
+  <div class="profile-section">
+    <div class="user-info">
+      <img src="assets/profile-icon.png" alt="Profile" class="profile-icon">
+      <span class="profile-name" *ngIf="!isCollapsed">{{ username }}</span>
+      <i class="fas" [ngClass]="isCollapsed ? 'fa-arrow-right' : 'fa-arrow-left'" (click)="toggleSidebar()"></i>
+    </div>
+
+    <!-- Botón de regenerar llaves -->
+    <div class="regenerate-keys">
+      <button (click)="regenerarLlaves()" title="Regenerate Keys">
+        <i class="fas fa-sync-alt"></i>
+        <span *ngIf="!isCollapsed"> Regenerate Keys</span>
+      </button>
+    </div>
+  </div>
+
+  <nav class="menu">
+    <ul>
+      <li><a (click)="navigateTo('/email')"><i class="fas fa-envelope"></i><span *ngIf="!isCollapsed"> Compose DM</span></a></li>
+
+      <li><a href="/inbox"><i class="fas fa-inbox"></i><span *ngIf="!isCollapsed"> Inbox</span></a></li>
+
+      <li class="menu-item dropdown" [class.submenu-open]="dropdownOpen === 'groups'">
+        <a (click)="navigateTo('/groups')">
+          <i class="fas fa-users"></i>
+          <span *ngIf="!isCollapsed">Groups</span>
+          <i class="fas fa-chevron-down submenu-toggle"></i>
+        </a>
+        <div class="submenu">
+          <a href="/groups">View all</a>
+        </div>
+      </li>
+
+      <li class="menu-item dropdown" [class.submenu-open]="dropdownOpen === 'users'">
+        <a (click)="navigateTo('/users')">
+          <i class="fas fa-users"></i>
+          <span *ngIf="!isCollapsed">Users</span>
+          <i class="fas fa-chevron-down submenu-toggle"></i>
+        </a>
+        <div class="submenu">
+          <a href="/users">View all</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="logout-section">
+    <a href="/login" class="logout-button">
+      <i class="fas fa-sign-out-alt"></i>
+      <span *ngIf="!isCollapsed"> Logout</span>
+    </a>
+  </div>
+</aside>
